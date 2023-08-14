@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS StoreManager;
-
+-- fazendo PR
 CREATE DATABASE StoreManager;
 
 USE StoreManager;
