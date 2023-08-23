@@ -12,6 +12,7 @@ const {
   getProductMock,
 } = require('../mocks/products.mocks');
 const productServices = require('../../../src/services/products.service');
+const productsModel = require('../../../src/models/products.model');
 // const productServices = require('../../../src/services/services.products');
 
 describe('Testes Requisito 1: Camada Service. Testa se busca corretamento todos os produtos ou individualmente', function () {
@@ -40,4 +41,10 @@ describe('Testes Requisito 1: Camada Service. Testa se busca corretamento todos 
     expect(product.data).to.be.deep.equal({ message: 'Product not found' });
     expect(product.status).to.be.equal(404);
   });
+it('Testa se ao inserir um produto, ele é retornado', async function () {
+  sinon.stub(productsModel, 'insertProduct').resolves({ insertId: 1 });
+  const product = await productServices.insertProduct('product');
+  expect(product).to.be.an('object');
+  expect(product.data).to.be.deep.equal({ insertId: 1 });
+});
 });
