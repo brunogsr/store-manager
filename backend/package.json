@@ -13,8 +13,7 @@
     "test:mocha": "mocha",
     "test:coverage": "nyc mocha",
     "test:mutation": "stryker run",
-    "lint": "eslint --no-error-on-unmatched-pattern .",
-    "postinstall": "npm install --prefix __tests__ && npm install --prefix backend"
+    "lint": "eslint --no-error-on-unmatched-pattern ."
   },
   "dependencies": {
     "@hapi/boom": "9.1.0",

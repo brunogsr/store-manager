@@ -5,13 +5,13 @@ const getAll = async () => {
   return { status: 200, data: allProducts };
 }; 
 
-const findById = async (id) => {
-  const product = await productsModel.findById(id);
+const getById = async (id) => {
+  const product = await productsModel.getById(id);
   if (!product) return { status: 404, data: { message: 'Product not found' } };
   return { status: 200, data: product };
 };
 
 module.exports = {
   getAll,
-  findById,
+  getById,
 };

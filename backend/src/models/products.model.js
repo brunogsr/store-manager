@@ -8,7 +8,7 @@ const getAll = async () => {
   return camelize(products);
 };
 
-const findById = async (id) => {
+const getById = async (id) => {
   const query = 'SELECT * FROM products WHERE id = ?';
   const [[productId]] = await connection.execute(
     query,
@@ -19,5 +19,5 @@ const findById = async (id) => {
 
 module.exports = {
   getAll,
-  findById,
+  getById,
 };

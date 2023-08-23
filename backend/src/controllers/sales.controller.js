@@ -1,17 +1,17 @@
 const salesServices = require('../services/sales.service');
 
-const findAllSales = async (_req, res) => {
-  const sales = await salesServices.findAllSales();
+const getAll = async (_req, res) => {
+  const sales = await salesServices.getAll();
   res.status(sales.status).json(sales.data);
 };
 
-const findSalesById = async (req, res) => { 
+const getById = async (req, res) => { 
   const { id } = req.params;
-  const sale = await salesServices.findSalesById(id);
+  const sale = await salesServices.getById(id);
   res.status(sale.status).json(sale.data);
 };
 
 module.exports = {
-  findAllSales,
-  findSalesById,
+  getAll,
+  getById,
 };
