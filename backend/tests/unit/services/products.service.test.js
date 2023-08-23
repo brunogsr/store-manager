@@ -21,12 +21,12 @@ describe('Testes Requisito 1: Camada Service. Testa se busca corretamento todos 
   it('Testa se ao buscar todos os produtos, todos são retornados', async function () {
     sinon.stub(connection, 'execute').resolves([getAllProductsMock]);
     const products = await productServices.getAll();
-    expect(products).to.be.an('array');
-    expect(products).to.be.deep.equal(getAllProductsMock);
+    expect(JSON.stringify(products)).to.equal(JSON.stringify({ status: 200, data: getAllProductsMock }));
   });
+  
   it('Testa se ao buscar um produto por Id, ele é retornado', async function () {
     sinon.stub(connection, 'execute').resolves([[getProductMock]]);
-    const product = await productServices.findById(1);
+    const product = await productServices.getById(1);
     expect(product).to.be.an('object');
     expect(product.data).to.be.deep.equal(getProductMock);
     expect(product.status).to.be.equal(200);
@@ -34,8 +34,10 @@ describe('Testes Requisito 1: Camada Service. Testa se busca corretamento todos 
   
   it('Testa se caso não encontre um produto, retorna um erro', async function () {
     sinon.stub(connection, 'execute').resolves([[]]);
-    const product = await productServices.findById(1);
+    const invalidId = 123123123;
+    const product = await productServices.getById(invalidId);
     expect(product).to.be.an('object');
-    expect(product).to.be.deep.equal({ status: 404, data: { message: 'Product not found' } });
+    expect(product.data).to.be.deep.equal({ message: 'Product not found' });
+    expect(product.status).to.be.equal(404);
   });
 });

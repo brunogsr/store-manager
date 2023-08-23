@@ -24,9 +24,9 @@ describe('Testes Requisito 1: Camada Model. Testa se busca corretamento todos os
     expect(products).to.be.deep.equal(getAllProductsMock);
   });
 
-  it('Testa se ao buscar um produto por Id, ele é retornado', async function () {
+  it('Testa se ao buscar um produto pelo id, o produto é retornado', async function () {
     sinon.stub(connection, 'execute').resolves([[getProductMock]]);
-    const product = await productsModel.findById(1);
+    const product = await productsModel.getById(1);
     expect(product).to.be.an('object');
     expect(product).to.be.deep.equal(getProductMock);
   });

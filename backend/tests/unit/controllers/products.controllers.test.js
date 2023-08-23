@@ -41,7 +41,7 @@ describe('Testes Requisito 1: Camada Controller. Testa se busca corretamento tod
       json: sinon.stub(),
     };
     sinon.stub(connection, 'execute').resolves([[getProductMock]]);
-    await productControllers.findById(req, res);
+    await productControllers.getById(req, res);
     expect(res.status.calledWith(200)).to.be.equal(true);
     expect(res.json.calledWith(getProductMock)).to.be.equal(true);
   });
