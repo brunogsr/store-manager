@@ -12,7 +12,7 @@ const {
   getProductMock,
 } = require('../mocks/products.mocks');
 const productControllers = require('../../../src/controllers/products.controller');
-const productServices = require('../../../src/services/service.products');
+const productServices = require('../../../src/services/products.service');
 
 describe('Testes Requisito 1: Camada Controller. Testa se busca corretamento todos os produtos ou individualmente', function () {
   afterEach(function () {

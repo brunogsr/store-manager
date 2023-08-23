@@ -11,7 +11,7 @@ const {
   getAllProductsMock,
   getProductMock,
 } = require('../mocks/products.mocks');
-const productServices = require('../../../src/services/service.products');
+const productServices = require('../../../src/services/products.service');
 // const productServices = require('../../../src/services/services.products');
 
 describe('Testes Requisito 1: Camada Service. Testa se busca corretamento todos os produtos ou individualmente', function () {
