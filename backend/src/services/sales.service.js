@@ -14,7 +14,20 @@ const getById = async (id) => {
   return { status: 200, data: sale };
 };
 
+const insertSales = async (sales) => {
+  // const { productId, quantity } = sales;
+  // console.log(sales, 'este é o sales no service');
+  const id = await salesModel.insertSales(sales);
+  // console.log(id, 'este é o id no service');
+  const data = [id, ...[sales]];
+  if (!id) {
+    return { status: 404, data: { message: 'Product not found' } }; 
+  }
+  return { status: 201, data };
+};
+
 module.exports = {
   getAll,
   getById,
+  insertSales,
 };

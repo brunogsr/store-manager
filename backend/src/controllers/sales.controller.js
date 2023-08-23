@@ -11,7 +11,18 @@ const getById = async (req, res) => {
   res.status(sale.status).json(sale.data);
 };
 
+const insertSales = async (req, res) => {
+  const sales = req.body;
+  // console.log(sales, 'este é o sales no controller');
+  const sale = await salesServices.insertSales(sales);
+  // console.log(sale, 'este é sale no controller');
+  // console.log(sale.status, 'este é o sale.status no controller');
+  // console.log(sale.data, 'este é o sale.data no controller');
+  res.status(sale.status).json(sale.data);
+};
+
 module.exports = {
   getAll,
   getById,
+  insertSales,
 };
