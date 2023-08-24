@@ -7,15 +7,15 @@ const getAll = async () => {
   ORDER BY sa.id ASC, sp.product_id;
   `;
   const [sales] = await connection.execute(query);
+  console.log(sales, 'este é o model');
   return (sales);
 };
 
 const getById = async (id) => {
-  const query = `SELECT s.sale_id AS saleId,
-  sp.product_id AS productId,
-  s.date, sp.quantity FROM sales s
-  INNER JOIN sales_products sp ON s.sale_id = sp.sale_id
-  WHERE s.sale_id = ?;
+  const query = `SELECT s.date, sp.product_id AS productId, sp.quantity
+  FROM sales s
+  JOIN sales_products sp ON s.id = sp.sale_id
+  WHERE s.id = ?;  
   `;
   const [sale] = await connection.execute(query, [id]);
   return (sale);
@@ -32,6 +32,7 @@ const insertSales = async (sales) => {
     return connection.execute(querySales, [insertId, sale.productId, sale.quantity]);
   });
   await Promise.all(eachSale);
+  console.log(insertId, 'este é o model');
   return insertId;
 };
 
