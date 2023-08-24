@@ -13,7 +13,8 @@ const getById = async (id) => {
 };
 
 const insertProduct = async (name) => {
-  const product = await productsModel.insertProduct(name);
+  const id = await productsModel.insertProduct(name);
+  const product = { id, name };
   return { status: 201, data: product };
 };
 
