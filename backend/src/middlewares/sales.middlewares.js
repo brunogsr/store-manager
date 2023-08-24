@@ -1,4 +1,4 @@
-const { errorMap } = require('./errorMap');
+const errorMap = require('./errorMap');
 const { productSaleSchema } = require('./schemas');
 
 const validadeSalesObj = (salesObj) => productSaleSchema.validate(salesObj);
@@ -11,8 +11,9 @@ const validadeSales = async (req, res, next) => {
     // console.log(result);
     // console.log('---------------------------------------------');
     const { error } = result;
-    // console.log(error);
-    const { type, message } = error;
+    console.log(error);
+    const { type, message } = error.details[0];
+    // console.log(errorMap(type));
     return res.status(errorMap(type)).json({ message });
   }
   next();
