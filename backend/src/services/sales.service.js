@@ -29,7 +29,7 @@ const insertSales = async (sales) => {
 
   return { status: 201, data };
 };
-
+// teste
 module.exports = {
   getAll,
   getById,
