@@ -25,13 +25,19 @@ const insertSales = async (sales) => {
   const date = new Date();
   const queryDate = 'INSERT INTO sales (date) VALUES (?)';
   const [{ insertId }] = await connection.execute(queryDate, [date]);
-  // console.log(sales, 'este é o model');
-  const eachSale = sales.map((sale) => {
-    const querySales = `INSERT INTO sales_products
-     (sale_id, product_id, quantity) VALUES (?, ?, ?)`;
-    return connection.execute(querySales, [insertId, sale.productId, sale.quantity]);
+
+  const salesArray = Object.values(sales);
+
+  const insertPromises = salesArray.map(async (sale) => {
+    if (sale.productId !== undefined && sale.quantity !== undefined) {
+      const querySales = `INSERT INTO sales_products
+       (sale_id, product_id, quantity) VALUES (?, ?, ?)`;
+      await connection.execute(querySales, [insertId, sale.productId, sale.quantity]);
+    }
   });
-  await Promise.all(eachSale);
+
+  await Promise.all(insertPromises);
+
   console.log(insertId, 'este é o model');
   return insertId;
 };
