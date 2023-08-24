@@ -47,4 +47,11 @@ describe('Testes Requisito 1: Camada Service. Testa se busca corretamento todos 
     expect(product.data).to.be.deep.equal({ id: 1, name: 'teste' });
     expect(product.status).to.be.equal(201);
   });
+  // it('Testa se é possível atualizar um produto', async function () {
+  //   sinon.stub(connection, 'execute').resolves([{ insertId: 1 }]);
+  //   const product = await productServices.updateProduct(1, 'teste');
+  //   expect(product).to.be.an('object');
+  //   expect(product.data).to.be.deep.equal({ id: 1, name: 'teste' });
+  //   expect(product.status).to.be.equal(200);
+  // });
 });

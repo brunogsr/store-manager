@@ -63,4 +63,23 @@ describe('Testes Requisito 1: Camada Controller. Testa se busca corretamento tod
     expect(res.status.calledWith(201)).to.be.equal(true);
     expect(res.json.calledWith({ insertId: 1 })).to.be.equal(true);
   });
+  it('Testa se ao atualizar um produto, ele é retornado', async function () {
+    const req = {
+      params: { id: 1 },
+      body: {
+        name: 'product',
+      },
+    };
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+    sinon.stub(productServices, 'updateProduct').resolves({
+      status: 200,
+      data: { id: 1, name: 'product' },
+    });
+    await productControllers.updateProduct(req, res);
+    expect(res.status.calledWith(200)).to.be.equal(true);
+    expect(res.json.calledWith({ id: 1, name: 'product' })).to.be.equal(true);
+  });
 });

@@ -34,5 +34,5 @@ describe('Testes Requisito 1: Camada Model. Testa se busca corretamento todos os
     sinon.stub(connection, 'execute').resolves([{ insertId: 1 }]);
     const insertId = await productsModel.insertProduct('Produto Teste');
     expect(insertId).to.equal(1);
-  });
+  });  
 });
