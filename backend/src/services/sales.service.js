@@ -1,4 +1,5 @@
 const salesModel = require('../models/sales.model');
+const verifyAllProducts = require('../utils/verifyAllProducts');
 
 const getAll = async () => {
   const sales = await salesModel.getAll();
@@ -15,14 +16,17 @@ const getById = async (id) => {
 };
 
 const insertSales = async (sales) => {
+  const productsExistVer = await verifyAllProducts(sales);
+
+  if (!productsExistVer) return { status: 404, data: { message: 'Product not found' } };
+
   const id = await salesModel.insertSales(sales);
+
   const data = {
     id,
     itemsSold: sales,
   };
-  if (!id) {
-    return { status: 404, data: { message: 'Product not found' } }; 
-  }
+
   return { status: 201, data };
 };
 
