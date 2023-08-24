@@ -19,8 +19,10 @@ const insertProduct = async (name) => {
 };
 
 const updateProduct = async (id, name) => {
-  await productsModel.updateProduct(id, name);
-  const product = { id, name };
+  // console.log(id, name);
+  const verifyProduct = await productsModel.getById(id);
+  if (!verifyProduct) return { status: 404, data: { message: 'Product not found' } };
+  const product = await productsModel.updateProduct(id, name);
   return { status: 200, data: product };
 };
 

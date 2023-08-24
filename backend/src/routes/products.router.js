@@ -6,6 +6,6 @@ const { validateName } = require('../middlewares/products.middlewares');
 route.get('/', productsControllers.getAll);
 route.get('/:id', productsControllers.getById);
 route.post('/', validateName, productsControllers.insertProduct);
-// route.put('/:id', validateName, productsControllers.updateProduct);
+route.put('/:id', validateName, productsControllers.updateProduct);
 
 module.exports = route;

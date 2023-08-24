@@ -5,8 +5,6 @@ const verifyAllProducts = async (salesArray) => {
     const productExist = await productServices.getById(productId);
     // console.log(productExist);
     return productExist.status !== 404;
-    // se o produto existir retorna true, se não existir retorna false
-    // verificando cada produto se é true ou false
   }));
   const productsVerificationArr = await Promise.all(productsVerirficationId);
   console.log(productsVerificationArr);
