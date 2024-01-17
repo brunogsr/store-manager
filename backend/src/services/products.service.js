@@ -2,14 +2,14 @@ const productsModel = require('../models/products.model');
 
 const getAll = async () => {
   const allProducts = await productsModel.getAll();
-  console.log(allProducts);
   return { status: 200, data: allProducts };
 }; 
 
 const getById = async (id) => {
   const product = await productsModel.getById(id);
-  if (!product) return { status: 404, data: { message: 'Product not found' } };
-  return { status: 200, data: product };
+  if (!product) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
+  if (product.length < 5) return { status: 'BAD_REQUEST', data: { message: 'Wrong id format' } };
+  return { status: null, data: product };
 };
 
 const insertProduct = async (name) => {
@@ -30,4 +30,4 @@ module.exports = {
   getById,
   insertProduct,
   updateProduct,
-};
+};  

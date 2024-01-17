@@ -4,18 +4,7 @@ const chaiHttp = require('chai-http');
 
 chai.use(chaiHttp);
 const { expect } = require('chai');
-
-// const connection = require('../../../src/models/connection');
-
-// const {
-  // getAllProductsMock,
-  // getProductMock,
-// } = require('../mocks/products.mocks');
-
-// const productServices = require('../../../src/services/products.service');
 const { validateName } = require('../../../src/middlewares/products.middlewares');
-
-// validateName = require('../../../src/middlewares/products.middlewares');
 
 describe('Teste se o middleware validateName está funcionando corretamente', function () {
   afterEach(function () {
@@ -59,7 +48,7 @@ describe('Teste se o middleware validateName está funcionando corretamente', fu
     };
     const res = {
       status: sinon.stub().returnsThis(),
-      json: sinon.stub().returns({ message: '"name" length must be at least 5 characters long' }),
+      json: sinon.stub(),
     };
     const next = sinon.stub();
     await validateName(req, res, next);

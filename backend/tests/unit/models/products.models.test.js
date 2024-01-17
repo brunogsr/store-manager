@@ -23,7 +23,6 @@ describe('Testes Requisito 1: Camada Model. Testa se busca corretamento todos os
     expect(products).to.be.an('array');
     expect(products).to.be.deep.equal(getAllProductsMock);
   });
-
   it('Testa se ao buscar um produto pelo id, o produto é retornado', async function () {
     sinon.stub(connection, 'execute').resolves([[getProductMock]]);
     const product = await productsModel.getById(1);
